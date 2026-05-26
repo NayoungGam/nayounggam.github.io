@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" role="img" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#1a3a2a"/>
+  <rect x="0" y="0" width="5" height="630" fill="#2d5c40"/>
+  <rect x="1195" y="0" width="5" height="630" fill="#2d5c40"/>
+  <line x1="70" y1="140" x2="127" y2="140" stroke="#4a8c60" stroke-width="1.5"/>
+  <text x="145" y="148" font-family="Georgia, serif" font-size="20" fill="#4a8c60" letter-spacing="5">CROSS-BORDER LEGAL KNOWLEDGE</text>
+  <text x="70" y="290" font-family="Georgia, serif" font-size="105" font-weight="600" fill="#f7f5f0">Where borders</text>
+  <text x="70" y="400" font-family="Georgia, serif" font-size="105" font-weight="600" fill="#f7f5f0">meet</text>
+  <text x="378" y="400" font-family="Georgia, serif" font-size="105" font-style="italic" font-weight="400" fill="#4a8c60">the law.</text>
+  <line x1="70" y1="438" x2="178" y2="438" stroke="#4a8c60" stroke-width="3"/>
+  <text x="70" y="490" font-family="Georgia, serif" font-size="24" fill="rgba(247,245,240,0.6)" letter-spacing="1">국경을 넘나드는 법률 문제를 기록합니다</text>
+  <text x="1130" y="570" font-family="Georgia, serif" font-size="220" font-style="italic" fill="rgba(255,255,255,0.04)" text-anchor="end">&amp;</text>
+  <text x="70" y="590" font-family="Georgia, serif" font-size="20" fill="rgba(247,245,240,0.35)" letter-spacing="3">nayounggam.github.io</text>
+</svg>
