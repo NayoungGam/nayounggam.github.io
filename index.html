@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross & Law</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Noto+Serif+KR:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #4a4a45;
+    --ink-light: #8a8a82;
+    --paper: #f7f5f0;
+    --accent: #1a3a2a;
+    --accent-light: #2d5c40;
+    --rule: #c8c4b8;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(247,245,240,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2.5rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-text { max-width: 640px; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--accent-light);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1rem;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    margin: 1.5rem 0 2.5rem;
+    font-weight: 300;
+  }
+  .hero-rule {
+    width: 60px; height: 2px;
+    background: var(--accent);
+    margin-bottom: 2rem;
+  }
+  .hero-desc {
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+  .hero-deco {
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    color: rgba(26,58,42,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 5rem 2.5rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--rule);
+  }
+
+  /* EXPERTISE */
+  .expertise { background: var(--white); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+  }
+  .expertise-item {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--rule);
+    transition: background 0.2s;
+  }
+  .expertise-item:last-child { border-right: none; }
+  .expertise-item:hover { background: var(--paper); }
+  .expertise-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--rule);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .expertise-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .expertise-name-ko {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.75rem;
+    color: var(--ink-light);
+  }
+
+  /* ARCHIVE */
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .archive-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .archive-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .card-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 0.75rem;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+  .card-excerpt {
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+  .card-footer {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.75rem;
+    color: var(--ink-light);
+  }
+
+  /* ABOUT */
+  .about { background: var(--accent); }
+  .about .section-label { color: rgba(255,255,255,0.5); }
+  .about .section-label::after { background: rgba(255,255,255,0.15); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .about-body {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+  .about-list { list-style: none; }
+  .about-list li {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .about-list li span {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-size: 0.75rem;
+    color: var(--ink-light);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .hero { padding: 5rem 1.25rem 3rem; }
+    .hero-deco { display: none; }
+    section { padding: 3.5rem 1.25rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Cross & Law</a>
+  <ul class="nav-links">
+    <li><a href="#archive">Archive</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:your@email.com">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Cross-Border Legal Knowledge</p>
+    <h1 class="hero-title">Where borders<br>meet <em>the law.</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">국경을 넘나드는 법률 문제를 기록합니다.<br>난민, 이민, 국제사법, 해외 법무의 현장에서.</p>
+    <p class="hero-desc">Cross-border legal practice demands navigating jurisdictions, cultures, and systems simultaneously. This is an ongoing archive of that work — questions asked, answers found, knowledge earned.</p>
+  </div>
+  <div class="hero-deco">&</div>
+</div>
+
+<section class="expertise">
+  <div class="section-inner">
+    <p class="section-label">Areas of Practice</p>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <span class="expertise-num">01</span>
+        <p class="expertise-name">Refugee & Immigration Law</p>
+        <p class="expertise-name-ko">난민 · 이민법</p>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-num">02</span>
+        <p class="expertise-name">International Private Law</p>
+        <p class="expertise-name-ko">국제사법</p>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-num">03</span>
+        <p class="expertise-name">Cross-Border Corporate</p>
+        <p class="expertise-name-ko">해외 법무 · 기업 자문</p>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-num">04</span>
+        <p class="expertise-name">Litigation & Regulatory</p>
+        <p class="expertise-name-ko">송무 · 대관 업무</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="archive">
+  <div class="section-inner">
+    <p class="section-label">Knowledge Archive</p>
+    <div class="archive-grid">
+      <a class="archive-card" href="#">
+        <p class="card-tag">Refugee Law</p>
+        <h3 class="card-title">난민 인정 기준: '박해의 충분한 근거'를 어떻게 입증하는가</h3>
+        <p class="card-excerpt">난민협약상 박해 요건과 실무에서 자주 맞닥뜨리는 증명 기준의 문제를 정리한다.</p>
+        <div class="card-footer">2025 · 난민법 실무</div>
+      </a>
+      <a class="archive-card" href="#">
+        <p class="card-tag">International Private Law</p>
+        <h3 class="card-title">준거법 결정의 실무: 로마 I·II 규정과 한국 국제사법</h3>
+        <p class="card-excerpt">계약 및 불법행위의 준거법 결정 시 EU와 한국 기준 간 차이점과 실무적 함의.</p>
+        <div class="card-footer">2025 · 국제사법</div>
+      </a>
+      <a class="archive-card" href="#">
+        <p class="card-tag">Cross-Border Corporate</p>
+        <h3 class="card-title">해외 현지법인 설립 시 법무 실사의 체크리스트</h3>
+        <p class="card-excerpt">동남아 주요국 법인 설립 과정에서 반복적으로 등장하는 법적 쟁점을 유형화한다.</p>
+        <div class="card-footer">2024 · 해외 법무</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-inner">
+    <p class="section-label">About</p>
+    <div class="about-inner">
+      <div>
+        <h2 class="about-title">A practitioner's<br>record of<br>cross-border law.</h2>
+        <p class="about-body">이 사이트는 국경을 넘는 법률 문제들을 다루면서 쌓은 지식을 아카이빙하고 공유하기 위해 만들었습니다. 완성된 답이 아니라, 실무에서 질문하고 탐구하는 과정 자체를 기록합니다.</p>
+      </div>
+      <div>
+        <ul class="about-list">
+          <li>Korean Bar Association <span>변호사</span></li>
+          <li>UNHCR Korea <span>법무담당관</span></li>
+          <li>Refugee & Immigration Law <span>난민 · 이민</span></li>
+          <li>International Dispute Resolution <span>국제분쟁</span></li>
+          <li>Cross-Border Corporate Advisory <span>해외 법무</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Cross & Law</span>
+  <span>nayounggam.github.io</span>
+</footer>
+
+</body>
+</html>
